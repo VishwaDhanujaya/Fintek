@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Fintek - Custom Stylesheet
+   Companion to Tailwind CSS (CDN)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base / Typography
+   -------------------------------------------------------------------------- */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   2. Lazy Loading - Blur-to-Focus Effect
+   Applied to all <img class="blur-load"> elements.
+   JS adds the .loaded class once the image src is set.
+   -------------------------------------------------------------------------- */
+.blur-load {
+    filter: blur(10px);
+    transition: filter 0.5s ease-in-out;
+}
+
+.blur-load.loaded {
+    filter: blur(0);
+}
+
+/* --------------------------------------------------------------------------
+   3. Navigation
+   -------------------------------------------------------------------------- */
+
+/* Animated underline on hover for desktop nav links */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #0056b3; /* fintek-blue */
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   4. Scrollbar Utilities
+   -------------------------------------------------------------------------- */
+
+/* Hide scrollbar (used on tabbed spec nav in product-detail.php) */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Tab Animations (Product Detail Page)
+   -------------------------------------------------------------------------- */
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   6. Utility / Component Overrides
+   (Add any future component-specific overrides here rather than inline)
+   -------------------------------------------------------------------------- */
+
+/* Floating label inputs — ensure the label sits correctly above filled selects */
+select.peer:not([value=""]) ~ label,
+select.peer:focus ~ label {
+    transform: translateY(-1rem) scale(0.75);
+}
