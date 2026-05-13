@@ -1,9 +1,13 @@
 <?php
 // products.php
-require_once 'data.php';
-require_once 'header.php';
+require_once 'includes/ProductCatalog.php';
 
+$catalog        = new ProductCatalog();
+$categories     = $catalog->getAllCategories();
+$allProducts    = $catalog->getAllProducts();
 $activeCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
+
+require_once 'header.php';
 ?>
 
 <div class="bg-white border-b border-gray-100">
@@ -16,50 +20,61 @@ $activeCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
 <section class="py-12 bg-gray-50 flex-grow">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row gap-8">
-            
+
             <!-- Sidebar / Filter -->
             <div class="w-full md:w-1/4">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sticky top-28">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-100">Categories</h3>
                     <ul class="space-y-2" id="categoryFilter">
                         <li>
-                            <button data-filter="all" class="filter-btn w-full text-left px-3 py-2 rounded-md transition-colors <?= $activeCategory === 'all' ? 'bg-fintek-blue text-white font-medium' : 'text-gray-600 hover:bg-blue-50 hover:text-fintek-blue' ?>">
+                            <button data-filter="all"
+                                    class="filter-btn w-full text-left px-3 py-2 rounded-md transition-colors <?= $activeCategory === 'all' ? 'bg-fintek-blue text-white font-medium' : 'text-gray-600 hover:bg-blue-50 hover:text-fintek-blue' ?>">
                                 All Products
                             </button>
                         </li>
-                        <?php foreach($categories as $catId => $category): ?>
+                        <?php foreach ($categories as $category): ?>
                         <li>
-                            <button data-filter="<?= $catId ?>" class="filter-btn w-full text-left px-3 py-2 rounded-md transition-colors <?= $activeCategory === $catId ? 'bg-fintek-blue text-white font-medium' : 'text-gray-600 hover:bg-blue-50 hover:text-fintek-blue' ?>">
-                                <?= htmlspecialchars($category['name']) ?>
+                            <button data-filter="<?= $category->getId() ?>"
+                                    class="filter-btn w-full text-left px-3 py-2 rounded-md transition-colors <?= $activeCategory === $category->getId() ? 'bg-fintek-blue text-white font-medium' : 'text-gray-600 hover:bg-blue-50 hover:text-fintek-blue' ?>">
+                                <?= htmlspecialchars($category->getName()) ?>
                             </button>
                         </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
-            
+
             <!-- Main Grid -->
             <div class="w-full md:w-3/4">
-                <!-- Javascript will toggle visibility of these items -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="productGrid">
-                    <?php foreach($products as $product): ?>
-                    <div class="product-item bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col group" data-category="<?= htmlspecialchars($product['category']) ?>">
+                    <?php foreach ($allProducts as $product):
+                        $cat = $catalog->getCategoryById($product->getCategoryId());
+                    ?>
+                    <div class="product-item bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col group"
+                         data-category="<?= htmlspecialchars($product->getCategoryId()) ?>">
                         <div class="relative h-48 bg-gray-50 p-6 flex items-center justify-center overflow-hidden">
-                            <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="max-h-full object-contain blur-load group-hover:scale-105 transition-transform duration-500" data-src="<?= htmlspecialchars($product['image']) ?>" onerror="this.src='https://placehold.co/400x300/f8fafc/94a3b8?text=Image'">
+                            <img src="<?= htmlspecialchars($product->getImage()) ?>"
+                                 alt="<?= htmlspecialchars($product->getName()) ?>"
+                                 class="max-h-full object-contain blur-load group-hover:scale-105 transition-transform duration-500"
+                                 data-src="<?= htmlspecialchars($product->getImage()) ?>"
+                                 onerror="this.src='https://placehold.co/400x300/f8fafc/94a3b8?text=Image'">
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
-                            <div class="text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold"><?= htmlspecialchars($categories[$product['category']]['name'] ?? 'General') ?></div>
-                            <h3 class="text-lg font-bold text-gray-900 mb-2"><?= htmlspecialchars($product['name']) ?></h3>
-                            <p class="text-sm text-gray-500 mb-4 flex-grow line-clamp-2"><?= htmlspecialchars($product['short_desc']) ?></p>
-                            
-                            <a href="product-detail.php?id=<?= urlencode($product['id']) ?>" class="mt-auto w-full inline-flex justify-center items-center px-4 py-2 border border-gray-200 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 hover:text-fintek-blue transition-colors">
+                            <div class="text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">
+                                <?= htmlspecialchars($cat ? $cat->getName() : 'General') ?>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2"><?= htmlspecialchars($product->getName()) ?></h3>
+                            <p class="text-sm text-gray-500 mb-4 flex-grow line-clamp-2"><?= htmlspecialchars($product->getShortDesc()) ?></p>
+
+                            <a href="product-detail.php?id=<?= urlencode($product->getId()) ?>"
+                               class="mt-auto w-full inline-flex justify-center items-center px-4 py-2 border border-gray-200 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 hover:text-fintek-blue transition-colors">
                                 View Details
                             </a>
                         </div>
                     </div>
                     <?php endforeach; ?>
                 </div>
-                
+
                 <!-- Empty State -->
                 <div id="emptyState" class="hidden text-center py-16">
                     <svg class="mx-auto h-12 w-12 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -69,12 +84,11 @@ $activeCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
                     <p class="mt-1 text-gray-500">Try selecting a different category.</p>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </section>
 
-<!-- Inject active category to JS -->
 <script>
     window.initialCategory = "<?= htmlspecialchars($activeCategory) ?>";
 </script>
