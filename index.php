@@ -36,8 +36,8 @@ require_once 'header.php';
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Solutions</h2>
-            <p class="text-gray-600">Discover our comprehensive range of high-performance business equipment tailored to your specific needs.</p>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Portfolio</h2>
+            <p class="text-gray-600">Authorized distributor of Sharp, Scancoin, Vivitek and NCR products in Sri Lanka.</p>
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
