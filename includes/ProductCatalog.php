@@ -159,6 +159,7 @@ class ProductCatalog
                 'image' => 'assets/images/Products/bp-30M28.jpg',
                 'short_desc' => 'Black & white multifunctional desktop copier. Up to 28 ppm (A4), 7-inch colour touch panel, 4 GB memory.',
                 'is_new' => true,
+                'brochure' => 'assets/pdf/BP-30M35_30M31_30M28_BRO_S.pdf',
                 'specs' => [
                     'General' => [
                         'Type' => 'Desktop',
@@ -220,6 +221,7 @@ class ProductCatalog
                 'image' => 'assets/images/Products/bp-10c20z.jpg',
                 'short_desc' => 'Colour multifunctional desktop copier. Up to 20 ppm (A4), 5-line LCD, 2 GB memory.',
                 'is_new' => true,
+                'brochure' => 'assets/pdf/BP-20C25_20C20_10C20_BRO_S.pdf',
                 'specs' => [
                     'General' => [
                         'Type' => 'Desktop',
@@ -382,8 +384,9 @@ class ProductCatalog
                 $d['price'],
                 $d['image'],
                 $d['short_desc'],
-                $d['is_new'],
-                $d['specs']
+                $d['is_new'] ?? false,
+                $d['brochure'] ?? null,
+                $d['specs'] ?? []
             );
         }
     }

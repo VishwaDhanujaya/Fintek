@@ -64,10 +64,12 @@ require_once 'header.php';
                                 class="w-full flex justify-center items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-white bg-fintek-blue hover:bg-fintek-blue-light transition-colors shadow-sm">
                                 Get a Quote
                             </a>
-                            <button
-                                class="w-full flex justify-center items-center px-8 py-4 border border-gray-300 text-lg font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors">
-                                Download Brochure
-                            </button>
+                            <?php if ($product->getBrochure()): ?>
+                                <a href="<?= htmlspecialchars($product->getBrochure()) ?>" target="_blank"
+                                    class="w-full flex justify-center items-center px-8 py-4 border border-gray-300 text-lg font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                                    Download Brochure
+                                </a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ class Product
     private string $image;
     private string $shortDesc;
     private bool   $isNew;
+    private ?string $brochure;
     private array  $specs;
 
     public function __construct(
@@ -26,6 +27,7 @@ class Product
         string $image,
         string $shortDesc,
         bool   $isNew  = false,
+        ?string $brochure = null,
         array  $specs  = []
     ) {
         $this->id         = $id;
@@ -35,6 +37,7 @@ class Product
         $this->image      = $image;
         $this->shortDesc  = $shortDesc;
         $this->isNew      = $isNew;
+        $this->brochure   = $brochure;
         $this->specs      = $specs;
     }
 
@@ -75,6 +78,11 @@ class Product
     public function isNew(): bool
     {
         return $this->isNew;
+    }
+
+    public function getBrochure(): ?string
+    {
+        return $this->brochure;
     }
 
     /**
