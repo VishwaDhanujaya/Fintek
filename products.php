@@ -51,7 +51,8 @@ require_once 'header.php';
                         // Retrieve the category to display its name inside the product card
                         $cat = $catalog->getCategoryById($product->getCategoryId());
                         ?>
-                        <div class="product-item project-card !p-0 overflow-hidden flex flex-col group"
+                        <div onclick="window.location.href='product-detail.php?id=<?= urlencode($product->getId()) ?>'"
+                            class="product-item project-card !p-0 overflow-hidden flex flex-col group border border-gray-100 hover:border-fintek-blue/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
                             data-category="<?= htmlspecialchars($product->getCategoryId()) ?>">
                             <div class="relative h-48 bg-gray-50 p-6 flex items-center justify-center overflow-hidden">
                                 <img src="<?= htmlspecialchars($product->getImage()) ?>"
@@ -64,16 +65,17 @@ require_once 'header.php';
                                 <div class="text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">
                                     <?= htmlspecialchars($cat ? $cat->getName() : 'General') ?>
                                 </div>
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-fintek-blue transition-colors">
                                     <?= htmlspecialchars($product->getName()) ?>
                                 </h3>
                                 <p class="text-sm text-gray-500 mb-4 flex-grow line-clamp-2">
                                     <?= htmlspecialchars($product->getShortDesc()) ?>
                                 </p>
 
-                                <a href="product-detail.php?id=<?= urlencode($product->getId()) ?>"
-                                    class="mt-auto w-full inline-flex justify-center items-center px-4 py-2 border border-gray-200 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 hover:text-fintek-blue transition-colors">
-                                    View Details
+                                <a href="contact.php?product=<?= urlencode($product->getName()) ?>"
+                                    onclick="event.stopPropagation();"
+                                    class="mt-auto w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-fintek-blue hover:bg-fintek-blue-light transition-all duration-300 shadow-sm">
+                                    Get Quote
                                 </a>
                             </div>
                         </div>

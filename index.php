@@ -141,7 +141,8 @@ require_once 'header.php';
                 // Retrieve the category to display its name on the card
                 $cat = $catalog->getCategoryById($product->getCategoryId());
                 ?>
-                <div class="project-card !p-0 overflow-hidden transform hover:-translate-y-2 flex flex-col group"
+                <div onclick="window.location.href='product-detail.php?id=<?= urlencode($product->getId()) ?>'"
+                    class="project-card !p-0 overflow-hidden transform hover:-translate-y-2 flex flex-col group border border-gray-100 hover:border-fintek-blue/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
                     data-aos="fade-up" data-aos-delay="<?= $delay ?>">
                     <div class="relative h-48 bg-gray-50 p-6 flex items-center justify-center overflow-hidden">
                         <?php if ($product->isNew()): ?>
@@ -158,7 +159,8 @@ require_once 'header.php';
                         <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider font-semibold">
                             <?= htmlspecialchars($cat ? $cat->getName() : 'General') ?>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2"><?= htmlspecialchars($product->getName()) ?></h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-fintek-blue transition-colors">
+                            <?= htmlspecialchars($product->getName()) ?></h3>
                         <p class="text-sm text-gray-600 mb-6 flex-grow line-clamp-2">
                             <?= htmlspecialchars($product->getShortDesc()) ?>
                         </p>
@@ -166,12 +168,10 @@ require_once 'header.php';
                         <div class="mt-auto flex items-center justify-between">
                             <span
                                 class="text-fintek-blue font-semibold"><?= htmlspecialchars($product->getPrice()) ?></span>
-                            <a href="product-detail.php?id=<?= urlencode($product->getId()) ?>"
-                                class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-fintek-blue group-hover:text-white transition-colors">
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
+                            <a href="contact.php?product=<?= urlencode($product->getName()) ?>"
+                                onclick="event.stopPropagation();"
+                                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-fintek-blue hover:bg-fintek-blue-light transition-colors shadow-sm">
+                                Get Quote
                             </a>
                         </div>
                     </div>
@@ -188,6 +188,35 @@ require_once 'header.php';
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
             </a>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-20 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Our Trusted Brands</h2>
+            <div class="h-1 w-20 bg-fintek-blue mx-auto rounded-full opacity-20"></div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+            <?php
+            $brands = [
+                ['name' => 'Sharp', 'logo' => 'assets/images/brand-sharp.jpg', 'link' => 'https://global.sharp/'],
+                ['name' => 'Vivitek', 'logo' => 'assets/images/brand-vivitec.jpg', 'link' => 'https://vivitek.eu/'],
+                ['name' => 'Scan Coin', 'logo' => 'assets/images/brand-scancoin.jpg', 'link' => 'https://paycomplete.com/scancoin/'],
+                ['name' => 'MIB', 'logo' => 'assets/images/brand-mib.jpg', 'link' => 'https://hyundaimib.com/'],
+                ['name' => 'Doculine', 'logo' => 'assets/images/brand-doculine.jpg', 'link' => 'https://doculine.eu/'],
+                ['name' => 'Posmart', 'logo' => 'assets/images/brand-posmart.jpg', 'link' => 'https://posmart.lk/'],
+            ];
+            foreach ($brands as $brand): ?>
+                <a href="<?= $brand['link'] ?>" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center justify-center p-8 bg-gray-50 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <img src="<?= $brand['logo'] ?>" alt="<?= $brand['name'] ?>"
+                        class="max-h-12 w-auto object-contain">
+                </a>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

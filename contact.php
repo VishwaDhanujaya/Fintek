@@ -156,6 +156,35 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
     </div>
 </section>
 
+
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Get Support From Our Brands</h2>
+            <div class="h-1 w-20 bg-fintek-blue mx-auto rounded-full opacity-20"></div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+            <?php
+            $brands = [
+                ['name' => 'Sharp', 'logo' => 'assets/images/brand-sharp.jpg', 'link' => 'https://global.sharp/'],
+                ['name' => 'Vivitek', 'logo' => 'assets/images/brand-vivitec.jpg', 'link' => 'https://vivitek.eu/'],
+                ['name' => 'Scan Coin', 'logo' => 'assets/images/brand-scancoin.jpg', 'link' => 'https://paycomplete.com/scancoin/'],
+                ['name' => 'MIB', 'logo' => 'assets/images/brand-mib.jpg', 'link' => 'https://hyundaimib.com/'],
+                ['name' => 'Doculine', 'logo' => 'assets/images/brand-doculine.jpg', 'link' => 'https://doculine.eu/'],
+                ['name' => 'Posmart', 'logo' => 'assets/images/brand-posmart.jpg', 'link' => 'https://posmart.lk/'],
+            ];
+            foreach ($brands as $brand): ?>
+                <a href="<?= $brand['link'] ?>" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center justify-center p-8 bg-gray-50 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <img src="<?= $brand['logo'] ?>" alt="<?= $brand['name'] ?>"
+                        class="max-h-12 w-auto object-contain">
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
 <?php
 // Load global footer and JavaScript assets
 require_once 'footer.php';
