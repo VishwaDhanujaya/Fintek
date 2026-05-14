@@ -17,6 +17,7 @@ class Product
     private string $shortDesc;
     private bool   $isNew;
     private ?string $brochure;
+    private array  $tags;
     private array  $specs;
 
     public function __construct(
@@ -28,6 +29,7 @@ class Product
         string $shortDesc,
         bool   $isNew  = false,
         ?string $brochure = null,
+        array  $tags = [],
         array  $specs  = []
     ) {
         $this->id         = $id;
@@ -38,6 +40,7 @@ class Product
         $this->shortDesc  = $shortDesc;
         $this->isNew      = $isNew;
         $this->brochure   = $brochure;
+        $this->tags       = $tags;
         $this->specs      = $specs;
     }
 
@@ -91,6 +94,11 @@ class Product
     public function getSpecs(): array
     {
         return $this->specs;
+    }
+
+    public function getTags(): array
+    {
+        return $this->tags;
     }
 
     /**

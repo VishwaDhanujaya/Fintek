@@ -12,15 +12,15 @@ require_once 'header.php';
             onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80'">
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">About Fintek</h1>
-        <p class="text-xl text-gray-300 max-w-2xl mx-auto">Confidence, reliability, service and value for money.</p>
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">About Fintek</h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">Confidence, reliability, service and value for money.</p>
     </div>
 </section>
 
 
 <section class="py-16 bg-gray-50 border-b border-gray-100">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-        <p class="text-lg text-gray-700 leading-relaxed">
+        <p class="text-base md:text-lg text-gray-700 leading-relaxed">
             Fintek managed solutions is recognized as one of the industry’s leading office automation solution
             providers. The marketed are world renowned brands such as Sharp, Scan coin and Vivitek. Other expansive
             portfolio of products comprise of reputable office automation brands. Confidence, reliability, service and

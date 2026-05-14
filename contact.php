@@ -14,6 +14,25 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
 
 <section class="py-16 bg-gray-50 flex-grow">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <?php if (isset($_GET['status'])): ?>
+            <?php if ($_GET['status'] == 'success'): ?>
+                <div class="mb-8 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl flex items-center" data-aos="fade-down">
+                    <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Thank you! Your message has been sent successfully. We will get back to you shortly.</span>
+                </div>
+            <?php elseif ($_GET['status'] == 'error'): ?>
+                <div class="mb-8 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl flex items-center" data-aos="fade-down">
+                    <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span>Oops! Something went wrong. <?= htmlspecialchars($_GET['message'] ?? 'Please try again later.') ?></span>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>
+
         <div class="flex flex-col lg:flex-row gap-12">
 
 
@@ -66,11 +85,11 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                 </div>
 
 
-                <div class="bg-gray-200 rounded-2xl overflow-hidden h-64 border border-gray-100 shadow-sm relative">
+                <div class="bg-gray-200 rounded-2xl overflow-hidden h-[300px] md:h-[400px] lg:h-[450px] border border-gray-100 shadow-sm relative">
                     <iframe
-                        src="https://maps.google.com/maps?q=248%20Vauxhall%20Street,%20Colombo%2002,%20Sri%20Lanka&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        class="absolute inset-0 w-full h-full border-0" allowfullscreen="" aria-hidden="false"
-                        tabindex="0">
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7413684942785!2d79.85656277390444!3d6.921490318412724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2599e05e28d05%3A0xb357be22f7e9b969!2sFintek%20Managed%20Solutions%20(Pvt)%20Ltd!5e0!3m2!1sen!2slk!4v1689569716854!5m2!1sen!2slk"
+                        class="absolute inset-0 w-full h-full border-0" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
             </div>
@@ -80,7 +99,7 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                 <div class="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-100">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
 
-                    <form action="#" method="POST" class="space-y-6">
+                    <form action="process-contact.php" method="POST" class="space-y-6">
 
                         <div class="relative">
                             <input type="text" id="name" name="name"

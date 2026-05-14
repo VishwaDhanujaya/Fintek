@@ -4,20 +4,26 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Base / Typography
+   1. Base / Typography / Global
    -------------------------------------------------------------------------- */
+:root {
+    --premium-bezier: cubic-bezier(0.16, 1, 0.3, 1); /* Out Quint: Snappy & Smooth */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Inter', sans-serif;
 }
 
 /* --------------------------------------------------------------------------
    2. Lazy Loading - Blur-to-Focus Effect
-   Applied to all <img class="blur-load"> elements.
-   JS adds the .loaded class once the image src is set.
    -------------------------------------------------------------------------- */
 .blur-load {
     filter: blur(10px);
-    transition: filter 0.5s ease-in-out;
+    transition: filter 0.8s var(--premium-bezier), transform 0.8s var(--premium-bezier);
 }
 
 .blur-load.loaded {
@@ -27,11 +33,9 @@ body {
 /* --------------------------------------------------------------------------
    3. Navigation
    -------------------------------------------------------------------------- */
-
-/* Animated underline on hover for desktop nav links */
 .nav-link {
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 0.4s var(--premium-bezier);
 }
 
 .nav-link::after {
@@ -42,18 +46,51 @@ body {
     bottom: -4px;
     left: 0;
     background-color: #0056b3; /* fintek-blue */
-    transition: width 0.3s ease;
+    transition: width 0.4s var(--premium-bezier);
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
 }
 
-/* --------------------------------------------------------------------------
-   4. Scrollbar Utilities
-   -------------------------------------------------------------------------- */
+.nav-link.active {
+    color: #0056b3 !important; /* fintek-blue */
+}
 
-/* Hide scrollbar (used on tabbed spec nav in product-detail.php) */
+/* --------------------------------------------------------------------------
+   4. Component Enhancements (Project Cards)
+   -------------------------------------------------------------------------- */
+.project-card {
+    transition: transform 0.4s var(--premium-bezier), box-shadow 0.4s var(--premium-bezier), border-color 0.4s var(--premium-bezier) !important;
+}
+
+.project-card:hover {
+    transform: translateY(-4px) !important; /* Subtle lift */
+    box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Tab & Generic Fade Animations
+   -------------------------------------------------------------------------- */
+.animate-fadeIn {
+    animation: fadeIn 0.6s var(--premium-bezier);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px); /* Subtle rise */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   6. Scrollbar Utilities
+   -------------------------------------------------------------------------- */
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
 }
@@ -64,29 +101,157 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   5. Tab Animations (Product Detail Page)
+   7. Mobile Menu Animation
    -------------------------------------------------------------------------- */
-.animate-fadeIn {
-    animation: fadeIn 0.3s ease-in-out;
+#mobileMenu {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s var(--premium-bezier), opacity 0.4s var(--premium-bezier);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+#mobileMenu.is-open {
+    max-height: 400px; /* Adjust as needed */
+    opacity: 1;
 }
 
 /* --------------------------------------------------------------------------
-   6. Utility / Component Overrides
-   (Add any future component-specific overrides here rather than inline)
+   8. Slider Enhancements (Mobile Touch Targets & Scaling)
    -------------------------------------------------------------------------- */
+@media (max-width: 639px) {
+    .hero-section-wrapper,
+    .hero-slider-main {
+        background-color: white !important;
+    }
+    .hero-slider-main {
+        height: 260px !important; /* Reduced from 400px to eliminate excess space */
+    }
+    .hero-slider-main img {
+        object-fit: contain !important; /* Ensure no cropping on mobile as requested */
+    }
+    .hero-pagination-container {
+        bottom: 1rem !important; /* Adjusted for shorter container */
+    }
+    
+    /* Dots visibility on white background for mobile */
+    .slider-dot {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+    }
+    .slider-dot.bg-white {
+        background-color: #0056b3 !important; /* fintek-blue for active dot */
+    }
+}
 
-/* Floating label inputs — ensure the label sits correctly above filled selects */
+.slider-dot {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Create a larger invisible touch area for the dots */
+.slider-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   9. Advanced Search Bar
+   -------------------------------------------------------------------------- */
+.search-input {
+    position: absolute;
+    right: 0;
+    transition: width 0.4s var(--premium-bezier), opacity 0.3s var(--premium-bezier), visibility 0.3s var(--premium-bezier);
+}
+
+.search-input.active {
+    width: 250px;
+    opacity: 1;
+    visibility: visible;
+    padding-left: 1.5rem;
+    padding-right: 3rem; /* Space for the search icon */
+}
+
+@media (max-width: 639px) {
+    #searchContainer {
+        position: static; 
+    }
+
+    .search-input.active {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 5rem;
+        z-index: 50;
+        background-color: white;
+        border-radius: 0;
+        padding-left: 1.5rem;
+        padding-right: 4rem;
+        font-size: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    #searchBtn {
+        position: relative;
+        z-index: 60;
+    }
+}
+    
+    .search-input.active + #searchBtn {
+        color: #0056b3; /* fintek-blue */
+    }
+
+    /* Adjust results to be absolute relative to header */
+    #searchResults.show {
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        width: 100%;
+        max-height: 80vh;
+        border-radius: 0;
+        z-index: 50;
+    }
+}
+
+#searchResults.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.search-result-item {
+    transition: background-color 0.2s var(--premium-bezier);
+}
+
+.search-result-item:hover {
+    background-color: #f3f4f6; /* bg-gray-100 */
+}
+
+/* --------------------------------------------------------------------------
+   10. Back to Top Button
+   -------------------------------------------------------------------------- */
+#backToTop {
+    opacity: 0;
+    transform: translateY(40px);
+    pointer-events: none;
+    transition: all 0.5s var(--premium-bezier);
+}
+
+#backToTop.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   10. Utility / Component Overrides
+   -------------------------------------------------------------------------- */
 select.peer:not([value=""]) ~ label,
 select.peer:focus ~ label {
     transform: translateY(-1rem) scale(0.75);

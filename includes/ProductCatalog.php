@@ -160,6 +160,7 @@ class ProductCatalog
                 'short_desc' => 'Black & white multifunctional desktop copier. Up to 28 ppm (A4), 7-inch colour touch panel, 4 GB memory.',
                 'is_new' => true,
                 'brochure' => 'assets/pdf/BP-30M35_30M31_30M28_BRO_S.pdf',
+                'tags' => ['printer', 'scanner', 'photocopy', 'xerox', 'office', 'bw', 'copier'],
                 'specs' => [
                     'General' => [
                         'Type' => 'Desktop',
@@ -222,6 +223,7 @@ class ProductCatalog
                 'short_desc' => 'Colour multifunctional desktop copier. Up to 20 ppm (A4), 5-line LCD, 2 GB memory.',
                 'is_new' => true,
                 'brochure' => 'assets/pdf/BP-20C25_20C20_10C20_BRO_S.pdf',
+                'tags' => ['printer', 'scanner', 'photocopy', 'office', 'color', 'copier'],
                 'specs' => [
                     'General' => [
                         'Type' => 'Desktop',
@@ -286,6 +288,8 @@ class ProductCatalog
                 'image' => 'assets/images/Products/mib-9.jpg',
                 'short_desc' => 'Heavy-duty banknote counter with 500-note hopper and speeds up to 1,500 notes/min.',
                 'is_new' => false,
+                'brochure' => null,
+                'tags' => ['banking', 'money', 'currency', 'finance', 'counting', 'atm'],
                 'specs' => [
                     'General' => [
                         'Dimensions (W × D × H)' => '280 × 269 × 261 mm',
@@ -344,6 +348,7 @@ class ProductCatalog
                 'image' => 'assets/images/Products/yfm1181.jpg',
                 'short_desc' => 'High-speed franking machine. 3,300 envelopes/hour, Ink Jet, handles C6–C4 and A4 envelopes.',
                 'is_new' => false,
+                'tags' => ['franker', 'mail', 'post', 'office', 'shipping'],
                 'specs' => [
                     'General' => [
                         'Throughput' => '3,300 envelopes per hour',
@@ -386,6 +391,7 @@ class ProductCatalog
                 $d['short_desc'],
                 $d['is_new'] ?? false,
                 $d['brochure'] ?? null,
+                $d['tags'] ?? [],
                 $d['specs'] ?? []
             );
         }

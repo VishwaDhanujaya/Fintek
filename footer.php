@@ -7,7 +7,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             <!-- Company Description and Branding -->
-            <div data-aos="fade-up" data-aos-duration="800">
+            <div data-aos="fade-up">
                 <img src="assets/images/fintek-logo.png" alt="Fintek Logo" class="h-14 w-auto mb-6 object-contain">
                 <p class="text-sm text-gray-400 mb-4 pr-4">Leading provider of modern office automation solutions. We
                     bring efficiency and innovation to your workplace.</p>
@@ -15,7 +15,7 @@
 
 
             <!-- Quick Links Navigation -->
-            <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            <div data-aos="fade-up" data-aos-delay="100">
                 <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <ul class="space-y-2">
                     <li><a href="index.php" class="text-sm hover:text-white transition-colors">Home</a></li>
@@ -27,7 +27,7 @@
 
 
             <!-- Contact Information (Address, Phone, Email) -->
-            <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            <div data-aos="fade-up" data-aos-delay="200">
                 <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
                 <ul class="space-y-2 text-sm text-gray-400">
                     <li class="flex items-start">
@@ -76,6 +76,15 @@
             </div>
         </div>
     </div>
+    <!-- Back to Top Button -->
+    <button id="backToTop"
+        class="fixed bottom-8 right-8 bg-fintek-blue text-white p-3 rounded-full shadow-xl z-[60] group hover:bg-fintek-blue-light"
+        aria-label="Back to Top">
+        <svg class="w-6 h-6 transition-transform group-hover:-translate-y-1" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
 </footer>
 
 <!-- AOS Animation Script -->

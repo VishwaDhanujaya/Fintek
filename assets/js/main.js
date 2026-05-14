@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             once: true,
             offset: 50,
             duration: 800,
-            easing: 'ease-out-cubic',
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)', // Premium Out Quint
         });
     }
 
@@ -52,39 +52,121 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Mobile Menu Toggle
+    // 3. Back to Top Button Logic
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // 4. Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
 
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('is-open');
         });
     }
 
-    // 4. Search Icon Toggle
+    // 2. Advanced Search Logic
     const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
     const searchContainer = document.getElementById('searchContainer');
 
-    if (searchBtn && searchContainer) {
+    if (searchBtn && searchInput) {
         searchBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            searchContainer.classList.toggle('hidden');
-            if (!searchContainer.classList.contains('hidden')) {
-                searchContainer.querySelector('input').focus();
+            const isActive = searchInput.classList.toggle('active');
+            if (isActive) {
+                // Ensure focus happens after transition/visibility change
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 100);
+                
+                if (searchInput.value.length > 1) {
+                    searchResults.classList.add('show');
+                }
+            } else {
+                searchResults.classList.remove('show');
+                searchInput.value = '';
             }
         });
 
-        // Close search when clicking outside
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (query.length > 1) {
+                // Smart search: check name, id, tags, and description
+                const matches = SEARCH_DATA.filter(item => {
+                    const nameMatch = item.name.toLowerCase().includes(query);
+                    const idMatch = item.id.toLowerCase().includes(query);
+                    const tagMatch = item.tags && item.tags.some(tag => tag.toLowerCase().includes(query));
+                    const descMatch = item.desc && item.desc.toLowerCase().includes(query);
+                    
+                    return nameMatch || idMatch || tagMatch || descMatch;
+                }).slice(0, 6); 
+
+                renderSearchResults(matches);
+            } else {
+                searchResults.classList.remove('show');
+            }
+        });
+
+        // Close on outside click
         document.addEventListener('click', (e) => {
-            if (!searchContainer.contains(e.target) && e.target !== searchBtn) {
-                searchContainer.classList.add('hidden');
+            if (searchContainer && !searchContainer.contains(e.target)) {
+                searchInput.classList.remove('active');
+                searchResults.classList.remove('show');
             }
         });
 
-        searchContainer.addEventListener('click', (e) => {
-            e.stopPropagation();
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                searchInput.classList.remove('active');
+                searchResults.classList.remove('show');
+                searchInput.blur();
+            }
         });
+    }
+
+    function renderSearchResults(matches) {
+        if (!searchResults) return;
+        if (matches.length > 0) {
+            searchResults.innerHTML = matches.map(item => `
+                <a href="${item.url}" class="search-result-item block p-4 border-b border-gray-50 last:border-0 hover:bg-gray-50">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden border border-gray-100">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <div class="text-sm font-semibold text-gray-900 truncate">${item.name}</div>
+                            <div class="text-[10px] uppercase tracking-wider text-fintek-blue mt-0.5">${item.id}</div>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </a>
+            `).join('');
+            searchResults.classList.add('show');
+        } else {
+            searchResults.innerHTML = '<div class="p-6 text-center text-sm text-gray-500">No products matching your search</div>';
+            searchResults.classList.add('show');
+        }
     }
 
     // 5. Product Filtering (products.php)
@@ -251,6 +333,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 startAutoPlay();
             });
         });
+
+        // Touch support for mobile swiping
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        heroSlider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        heroSlider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        const handleSwipe = () => {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swiped left -> next
+                nextSlide();
+                startAutoPlay();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                // Swiped right -> prev
+                prevSlide();
+                startAutoPlay();
+            }
+        };
 
         // Initialize Slider
         updateSlider();

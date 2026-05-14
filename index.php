@@ -12,20 +12,29 @@ require_once 'header.php';
 
 
 <!-- Section 1: Hero Slider -->
-<section class="relative w-full overflow-hidden bg-gray-900 group">
-    <div id="heroSlider" class="relative h-[350px] sm:h-[500px] lg:h-[650px]">
+<section class="hero-section-wrapper relative w-full overflow-hidden bg-gray-900 group">
+    <div id="heroSlider" class="hero-slider-main relative h-[350px] sm:h-[500px] lg:h-[650px]">
         <!-- Slide 1 -->
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out z-0">
-            <img src="assets/images/web-slide-01.jpg" alt="Fintek Solutions 1" class="w-full h-full object-cover">
+            <picture>
+                <source srcset="assets/images/m-web-slide-01.jpg" media="(max-width: 639px)">
+                <img src="assets/images/web-slide-01.jpg" alt="Fintek Solutions 1" class="w-full h-full object-cover">
+            </picture>
         </div>
         <!-- Slide 2 -->
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out z-0">
-            <img src="assets/images/web-slide-02.jpg" alt="Fintek Solutions 2" class="w-full h-full object-cover">
+            <picture>
+                <source srcset="assets/images/m-web-slide-02.jpg" media="(max-width: 639px)">
+                <img src="assets/images/web-slide-02.jpg" alt="Fintek Solutions 2" class="w-full h-full object-cover">
+            </picture>
             <div class="absolute inset-0 bg-black/5"></div>
         </div>
         <!-- Slide 3 -->
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out z-0">
-            <img src="assets/images/web-slide-03.jpg" alt="Fintek Solutions 3" class="w-full h-full object-cover">
+            <picture>
+                <source srcset="assets/images/m-web-slide-03.jpg" media="(max-width: 639px)">
+                <img src="assets/images/web-slide-03.jpg" alt="Fintek Solutions 3" class="w-full h-full object-cover">
+            </picture>
             <div class="absolute inset-0 bg-black/5"></div>
         </div>
     </div>
@@ -47,7 +56,7 @@ require_once 'header.php';
     </button>
 
     <!-- Pagination Dots -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
+    <div class="hero-pagination-container absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
         <button class="slider-dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white transition-all"
             data-index="0"></button>
         <button class="slider-dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white transition-all"
@@ -61,10 +70,10 @@ require_once 'header.php';
 <!-- Section 2: Welcome Introduction -->
 <section class="py-24 bg-white border-b border-gray-100">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center" data-aos="fade-up">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 tracking-tight">
+        <h2 class="text-2xl sm:text-4xl font-bold text-gray-900 mb-8 tracking-tight">
             Welcome to <span class="text-fintek-blue">Fintek</span>
         </h2>
-        <p class="text-lg text-gray-600 leading-relaxed font-light mb-10">
+        <p class="text-base sm:text-lg text-gray-600 leading-relaxed font-light mb-10">
             Fintek Managed Solutions (Pvt) Ltd, a fully incorporated subsidiary of Gestetner of Ceylon PLC, has been
             appointed the authorized distributor for Sharp Office Automation products and solutions, NCR banking
             products and solutions, Scancoin cash counter products and solutions and Vivitek projectors in Sri
@@ -165,15 +174,11 @@ require_once 'header.php';
                             <?= htmlspecialchars($product->getShortDesc()) ?>
                         </p>
 
-                        <div class="mt-auto flex items-center justify-between">
-                            <span
-                                class="text-fintek-blue font-semibold"><?= htmlspecialchars($product->getPrice()) ?></span>
-                            <a href="contact.php?product=<?= urlencode($product->getName()) ?>"
-                                onclick="event.stopPropagation();"
-                                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-fintek-blue hover:bg-fintek-blue-light transition-colors shadow-sm">
-                                Get Quote
-                            </a>
-                        </div>
+                        <a href="contact.php?product=<?= urlencode($product->getName()) ?>"
+                            onclick="event.stopPropagation();"
+                            class="mt-auto w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-fintek-blue hover:bg-fintek-blue-light transition-all duration-300 shadow-sm">
+                            Get Quote
+                        </a>
                     </div>
                 </div>
                 <?php
