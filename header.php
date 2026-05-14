@@ -21,7 +21,10 @@ foreach ($allProducts as $product) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fintek - Office Automation</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/fintek-logo.png">
+    <meta name="description" content="Fintek Managed Solutions - Authorized distributor for Sharp, NCR, Scancoin, and Vivitek in Sri Lanka. Providing world-class office and banking automation solutions.">
+    <title>Fintek - <?= ucfirst(str_replace(['.php', '-'], ['', ' '], $currentPage === 'index.php' ? 'Office Automation' : $currentPage)) ?></title>
     <!-- Tailwind CSS (Production-ready) -->
     <link href="assets/css/main.css" rel="stylesheet">
     <!-- Google Fonts -->

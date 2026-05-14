@@ -201,7 +201,6 @@ body {
         position: relative;
         z-index: 60;
     }
-}
     
     .search-input.active + #searchBtn {
         color: #0056b3; /* fintek-blue */
