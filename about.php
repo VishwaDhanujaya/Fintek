@@ -1,9 +1,10 @@
 <?php
-// about.php
+
+// Load global header, navigation, and CSS assets
 require_once 'header.php';
 ?>
 
-<!-- Hero -->
+
 <section class="relative bg-gray-900 py-24">
     <div class="absolute inset-0 overflow-hidden">
         <img src="assets/images/about-hero.jpg" alt="Fintek Team" class="w-full h-full object-cover opacity-30 blur-load" data-src="assets/images/about-hero.jpg" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80'">
@@ -14,7 +15,7 @@ require_once 'header.php';
     </div>
 </section>
 
-<!-- Introduction -->
+
 <section class="py-16 bg-gray-50 border-b border-gray-100">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
         <p class="text-lg text-gray-700 leading-relaxed">
@@ -23,11 +24,11 @@ require_once 'header.php';
     </div>
 </section>
 
-<!-- Vision & Mission -->
+
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="bg-gray-50 rounded-2xl p-10 border border-gray-100 shadow-sm" data-aos="fade-right">
+            <div class="project-card bg-gray-50 !p-10" data-aos="fade-right">
                 <div class="w-12 h-12 bg-fintek-blue rounded-lg flex items-center justify-center mb-6">
                     <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                 </div>
@@ -35,7 +36,7 @@ require_once 'header.php';
                 <p class="text-gray-600 leading-relaxed">To be the leading office automation solutions provider with strong brand identity</p>
             </div>
             
-            <div class="bg-gray-50 rounded-2xl p-10 border border-gray-100 shadow-sm" data-aos="fade-left">
+            <div class="project-card bg-gray-50 !p-10" data-aos="fade-left">
                 <div class="w-12 h-12 bg-fintek-blue rounded-lg flex items-center justify-center mb-6">
                     <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 </div>
@@ -46,7 +47,7 @@ require_once 'header.php';
     </div>
 </section>
 
-<!-- Team (Summarized) -->
+
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl font-bold text-gray-900 mb-12" data-aos="fade-up">Meet Our Directors</h2>
@@ -85,4 +86,7 @@ require_once 'header.php';
     </div>
 </section>
 
-<?php require_once 'footer.php'; ?>
+<?php 
+// Load global footer and JavaScript assets
+require_once 'footer.php'; 
+?>

@@ -1,17 +1,19 @@
 <?php
-// footer.php
+
 ?>
 </main>
 <footer class="bg-slate-900 text-gray-300 py-12 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Company Info -->
+
+            <!-- Company Description and Branding -->
             <div data-aos="fade-up" data-aos-duration="800">
                 <span class="text-3xl font-bold text-white tracking-tight mb-4 inline-block">Fintek.</span>
                 <p class="text-sm text-gray-400 mb-4 pr-4">Leading provider of modern office automation solutions. We bring efficiency and innovation to your workplace.</p>
             </div>
             
-            <!-- Quick Links -->
+
+            <!-- Quick Links Navigation -->
             <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
                 <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <ul class="space-y-2">
@@ -22,7 +24,8 @@
                 </ul>
             </div>
             
-            <!-- Contact Info -->
+
+            <!-- Contact Information (Address, Phone, Email) -->
             <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
                 <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
                 <ul class="space-y-2 text-sm text-gray-400">

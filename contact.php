@@ -1,6 +1,7 @@
 <?php
-// contact.php
+
 require_once 'header.php';
+// Pre-fill the product reference if arriving from a product detail page
 $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : '';
 ?>
 
@@ -15,7 +16,7 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row gap-12">
             
-            <!-- Left: Info & Map -->
+
             <div class="w-full lg:w-1/2 space-y-8" data-aos="fade-right">
                 <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
                     <h3 class="text-xl font-bold text-gray-900 mb-6">Our Office</h3>
@@ -50,7 +51,7 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                     </ul>
                 </div>
                 
-                <!-- Map Iframe -->
+
                 <div class="bg-gray-200 rounded-2xl overflow-hidden h-64 border border-gray-100 shadow-sm relative">
                     <iframe 
                         src="https://maps.google.com/maps?q=248%20Vauxhall%20Street,%20Colombo%2002,%20Sri%20Lanka&t=&z=15&ie=UTF8&iwloc=&output=embed" 
@@ -62,13 +63,13 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                 </div>
             </div>
             
-            <!-- Right: Contact Form -->
+
             <div class="w-full lg:w-1/2" data-aos="fade-left">
                 <div class="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-100">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
                     
                     <form action="#" method="POST" class="space-y-6">
-                        <!-- Floating Label Inputs -->
+
                         <div class="relative">
                             <input type="text" id="name" name="name" class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-fintek-blue peer" placeholder=" " required />
                             <label for="name" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-fintek-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Full Name</label>
@@ -81,6 +82,7 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                         
                         <div class="relative">
                             <select id="department" name="department" class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-fintek-blue peer">
+                                <!-- Pre-select the 'Sales Inquiry' department if a specific product was requested -->
                                 <option value="sales" <?= $productName ? 'selected' : '' ?>>Sales Inquiry</option>
                                 <option value="support">Technical Support</option>
                                 <option value="toner">Toner & Consumables</option>
@@ -92,6 +94,7 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                             </div>
                         </div>
 
+                        <?php // If a product was passed in the URL, display a read-only reference field ?>
                         <?php if($productName): ?>
                         <div class="relative">
                             <input type="text" id="product_ref" name="product_ref" value="<?= $productName ?>" class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-fintek-blue peer" placeholder=" " readonly />
@@ -104,9 +107,12 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                             <label for="message" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-fintek-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Your Message</label>
                         </div>
                         
-                        <button type="submit" class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-fintek-blue hover:bg-fintek-blue-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fintek-blue transition-colors">
-                            Send Message
-                        </button>
+                        <?php
+                            $buttonText = 'Send Message';
+                            $buttonType = 'submit';
+                            $buttonClass = 'w-full py-3.5 px-4 text-sm';
+                            require 'includes/button.php';
+                        ?>
                     </form>
                 </div>
             </div>
@@ -115,4 +121,7 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
     </div>
 </section>
 
-<?php require_once 'footer.php'; ?>
+<?php 
+// Load global footer and JavaScript assets
+require_once 'footer.php'; 
+?>

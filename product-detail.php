@@ -1,10 +1,10 @@
 <?php
-// product-detail.php
+
 require_once 'includes/ProductCatalog.php';
 
-$catalog   = new ProductCatalog();
-$productId = isset($_GET['id']) ? $_GET['id'] : null;
-$product   = $productId ? $catalog->getProductById($productId) : null;
+$catalog   = new ProductCatalog(); // Initialize product catalog wrapper
+$productId = isset($_GET['id']) ? $_GET['id'] : null; // Retrieve the product ID from the query string
+$product   = $productId ? $catalog->getProductById($productId) : null; // Fetch the specific product details
 
 // Redirect to catalog if product not found
 if (!$product) {
@@ -12,7 +12,7 @@ if (!$product) {
     exit;
 }
 
-$category = $catalog->getCategoryById($product->getCategoryId());
+$category = $catalog->getCategoryById($product->getCategoryId()); // Fetch the category for the breadcrumb navigation
 
 require_once 'header.php';
 ?>
@@ -37,7 +37,7 @@ require_once 'header.php';
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="flex flex-col lg:flex-row">
 
-                <!-- Left Column: Sticky Image & Core Info -->
+
                 <div class="w-full lg:w-2/5 p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-gray-100">
                     <div class="sticky top-28">
                         <?php if ($product->isNew()): ?>
@@ -67,16 +67,16 @@ require_once 'header.php';
                     </div>
                 </div>
 
-                <!-- Right Column: Tabbed Specifications -->
+
                 <div class="w-full lg:w-3/5 p-8 lg:p-12">
                     <h2 class="text-2xl font-bold text-gray-900 mb-8">Technical Specifications</h2>
 
                     <?php if ($product->hasSpecs()): ?>
 
-                        <!-- Tab Navigation -->
+
                         <div class="flex overflow-x-auto border-b border-gray-200 mb-8 hide-scrollbar">
                             <?php
-                            $first = true;
+                            $first = true; // Track the first tab to set it as active by default
                             foreach ($product->getSpecGroupNames() as $groupName):
                                 $tabId = $product->getTabId($groupName);
                             ?>
@@ -90,10 +90,10 @@ require_once 'header.php';
                             ?>
                         </div>
 
-                        <!-- Tab Content Panes -->
+
                         <div class="spec-tab-content-container">
                             <?php
-                            $first = true;
+                            $first = true; // Track the first content pane to display it by default
                             foreach ($product->getSpecs() as $groupName => $specData):
                                 $tabId = $product->getTabId($groupName);
                             ?>
@@ -131,4 +131,7 @@ require_once 'header.php';
     </div>
 </section>
 
-<?php require_once 'footer.php'; ?>
+<?php 
+// Load global footer and JavaScript assets
+require_once 'footer.php'; 
+?>

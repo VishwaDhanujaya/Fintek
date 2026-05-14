@@ -1,15 +1,16 @@
 <?php
-// index.php
+
+// Initialize catalog and retrieve data for the homepage
 require_once 'includes/ProductCatalog.php';
 
 $catalog    = new ProductCatalog();
-$categories = $catalog->getAllCategories();
-$featured   = $catalog->getFeaturedProducts(4);
+$categories = $catalog->getAllCategories(); // Populate the Portfolio section
+$featured   = $catalog->getFeaturedProducts(4); // Limit to 4 featured products for the grid
 
 require_once 'header.php';
 ?>
 
-<!-- Hero Section -->
+
 <section class="relative bg-white overflow-hidden">
     <div class="absolute inset-0">
         <img src="assets/images/hero.jpg" alt="Modern Office" class="w-full h-full object-cover blur-load" data-src="assets/images/hero.jpg" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80'">
@@ -37,7 +38,7 @@ require_once 'header.php';
     </div>
 </section>
 
-<!-- Portfolio / Categories Section -->
+
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
@@ -47,9 +48,10 @@ require_once 'header.php';
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <?php
+            // Stagger animation delays for portfolio cards
             $delay = 0;
             foreach ($categories as $category): ?>
-                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col items-center text-center cursor-pointer group"
+                <div class="project-card flex flex-col items-center text-center cursor-pointer group"
                      onclick="window.location.href='products.php?category=<?= $category->getId() ?>'"
                      data-aos="fade-up" data-aos-delay="<?= $delay ?>">
                     <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-6 group-hover:bg-fintek-blue transition-colors duration-300">
@@ -69,7 +71,7 @@ require_once 'header.php';
     </div>
 </section>
 
-<!-- Featured Products Section -->
+
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-end mb-12" data-aos="fade-up">
@@ -84,11 +86,13 @@ require_once 'header.php';
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <?php
+            // Stagger animation delays for featured product cards
             $delay = 0;
             foreach ($featured as $product):
+                // Retrieve the category to display its name on the card
                 $cat = $catalog->getCategoryById($product->getCategoryId());
             ?>
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col group"
+                <div class="project-card !p-0 overflow-hidden transform hover:-translate-y-2 flex flex-col group"
                      data-aos="fade-up" data-aos-delay="<?= $delay ?>">
                     <div class="relative h-48 bg-gray-50 p-6 flex items-center justify-center overflow-hidden">
                         <?php if ($product->isNew()): ?>
@@ -131,4 +135,7 @@ require_once 'header.php';
     </div>
 </section>
 
-<?php require_once 'footer.php'; ?>
+<?php 
+// Load global footer and JavaScript assets
+require_once 'footer.php'; 
+?>

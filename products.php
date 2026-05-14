@@ -1,11 +1,11 @@
 <?php
-// products.php
+
 require_once 'includes/ProductCatalog.php';
 
-$catalog        = new ProductCatalog();
-$categories     = $catalog->getAllCategories();
-$allProducts    = $catalog->getAllProducts();
-$activeCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
+$catalog        = new ProductCatalog(); // Initialize product catalog wrapper
+$categories     = $catalog->getAllCategories(); // Fetch all categories for the sidebar filter
+$allProducts    = $catalog->getAllProducts(); // Fetch all products to populate the main grid
+$activeCategory = isset($_GET['category']) ? $_GET['category'] : 'all'; // Determine active category from URL, default to 'all'
 
 require_once 'header.php';
 ?>
@@ -21,7 +21,7 @@ require_once 'header.php';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row gap-8">
 
-            <!-- Sidebar / Filter -->
+
             <div class="w-full md:w-1/4">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sticky top-28">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-100">Categories</h3>
@@ -44,13 +44,14 @@ require_once 'header.php';
                 </div>
             </div>
 
-            <!-- Main Grid -->
+
             <div class="w-full md:w-3/4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="productGrid">
                     <?php foreach ($allProducts as $product):
+                        // Retrieve the category to display its name inside the product card
                         $cat = $catalog->getCategoryById($product->getCategoryId());
                     ?>
-                    <div class="product-item bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col group"
+                    <div class="product-item project-card !p-0 overflow-hidden flex flex-col group"
                          data-category="<?= htmlspecialchars($product->getCategoryId()) ?>">
                         <div class="relative h-48 bg-gray-50 p-6 flex items-center justify-center overflow-hidden">
                             <img src="<?= htmlspecialchars($product->getImage()) ?>"
@@ -75,7 +76,7 @@ require_once 'header.php';
                     <?php endforeach; ?>
                 </div>
 
-                <!-- Empty State -->
+
                 <div id="emptyState" class="hidden text-center py-16">
                     <svg class="mx-auto h-12 w-12 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -90,7 +91,11 @@ require_once 'header.php';
 </section>
 
 <script>
+    // Pass the initial category from PHP to JavaScript to apply the filter on page load
     window.initialCategory = "<?= htmlspecialchars($activeCategory) ?>";
 </script>
 
-<?php require_once 'footer.php'; ?>
+<?php 
+// Load global footer and JavaScript assets
+require_once 'footer.php'; 
+?>

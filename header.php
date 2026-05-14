@@ -1,5 +1,5 @@
 <?php
-// header.php
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,21 +28,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Tailwind Input (for @apply) -->
+    <link href="assets/css/input.css" rel="stylesheet" type="text/tailwindcss">
     <!-- Custom Styles -->
     <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased overflow-x-hidden flex flex-col min-h-screen">
 
-<!-- Navigation -->
+
 <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
-            <!-- Logo -->
+
+            <!-- Site Logo / Brand -->
             <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='index.php'">
                 <span class="text-3xl font-bold text-fintek-blue tracking-tight">Fintek.</span>
             </div>
 
-            <!-- Desktop Menu -->
+
+            <!-- Desktop Navigation Links -->
             <nav class="hidden md:flex space-x-8">
                 <a href="index.php" class="text-gray-600 hover:text-fintek-blue nav-link font-medium">Home</a>
                 <a href="about.php" class="text-gray-600 hover:text-fintek-blue nav-link font-medium">About Us</a>
@@ -50,7 +54,8 @@
                 <a href="contact.php" class="text-gray-600 hover:text-fintek-blue nav-link font-medium">Contact Us</a>
             </nav>
 
-            <!-- Search Icon & Mobile Menu Button -->
+
+            <!-- Search Icon and Mobile Menu Toggle (Visible on smaller screens) -->
             <div class="flex items-center space-x-4">
                 <button id="searchBtn" class="text-gray-500 hover:text-fintek-blue transition-colors" aria-label="Search">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -70,7 +75,8 @@
         </div>
     </div>
     
-    <!-- Mobile Menu (hidden by default) -->
+
+    <!-- Mobile Navigation Menu (Toggled via JS) -->
     <div class="md:hidden hidden bg-white border-t border-gray-100" id="mobileMenu">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-inner">
             <a href="index.php" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-fintek-blue hover:bg-gray-50 rounded-md">Home</a>
