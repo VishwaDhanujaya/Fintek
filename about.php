@@ -13,7 +13,8 @@ require_once 'header.php';
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
         <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">About Fintek</h1>
-        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">Confidence, reliability, service and value for money.</p>
+        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">Confidence, reliability, service and value for
+            money.</p>
     </div>
 </section>
 
@@ -80,7 +81,7 @@ require_once 'header.php';
             <!-- Mr. S.J.M. Anzsar -->
             <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                 <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="assets/images/dir-anzsar.png" alt="Mr. S.J.M. Anzsar" class="w-full h-full object-cover">
+                    <img src="assets/images/dir-anzsar.webp" alt="Mr. S.J.M. Anzsar" class="w-full h-full object-cover">
                 </div>
                 <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Mr. S.J.M. Anzsar</h4>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>
@@ -89,7 +90,7 @@ require_once 'header.php';
             <!-- Mr. A.R. Rasiah -->
             <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                 <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="assets/images/dir-rasiah.png" alt="Mr. A.R. Rasiah" class="w-full h-full object-cover">
+                    <img src="assets/images/dir-rasiah.webp" alt="Mr. A.R. Rasiah" class="w-full h-full object-cover">
                 </div>
                 <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Mr. A.R. Rasiah</h4>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>
@@ -98,7 +99,8 @@ require_once 'header.php';
             <!-- Ms. A. Geethanjalee -->
             <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                 <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="assets/images/dir-geethanjalee.png" alt="Ms. A. Geethanjalee" class="w-full h-full object-cover">
+                    <img src="assets/images/dir-geethanjalee.webp" alt="Ms. A. Geethanjalee"
+                        class="w-full h-full object-cover">
                 </div>
                 <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Ms. A. Geethanjalee</h4>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>
@@ -107,7 +109,8 @@ require_once 'header.php';
             <!-- Mr. L. Susiri Perera -->
             <div class="text-center" data-aos="fade-up" data-aos-delay="400">
                 <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="assets/images/dir-perera.png" alt="Mr. L. Susiri Perera" class="w-full h-full object-cover">
+                    <img src="assets/images/dir-perera.webp" alt="Mr. L. Susiri Perera"
+                        class="w-full h-full object-cover">
                 </div>
                 <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Mr. L. Susiri Perera</h4>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>
@@ -116,7 +119,8 @@ require_once 'header.php';
             <!-- Mr. A. Michael G. Gomez -->
             <div class="text-center" data-aos="fade-up" data-aos-delay="500">
                 <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="assets/images/dir-gomez.png" alt="Mr. A. Michael G. Gomez" class="w-full h-full object-cover">
+                    <img src="assets/images/dir-gomez.webp" alt="Mr. A. Michael G. Gomez"
+                        class="w-full h-full object-cover">
                 </div>
                 <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Mr. A. Michael G. Gomez</h4>
                 <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>

@@ -34,23 +34,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port       = SMTP_PORT;
 
         // Recipients
-        $mail->setFrom(SMTP_USERNAME, 'Fintek Website Form');
+        $mail->setFrom(SMTP_USERNAME, 'Fintek Inquiries');
         $mail->addAddress(RECIPIENT_EMAIL, RECIPIENT_NAME);
         $mail->addReplyTo($email, $name);
 
+        // Attachments
+        $mail->addEmbeddedImage('assets/images/fintek-logo.png', 'fintek_logo');
+
         // Content
         $mail->isHTML(true);
-        $mail->Subject = "New Inquiry: $department - From $name";
+        $mail->Subject = "New Website Inquiry: $department";
         
         $emailContent = "
-            <h2>New Website Inquiry</h2>
-            <p><strong>Name:</strong> $name</p>
-            <p><strong>Email:</strong> $email</p>
-            <p><strong>Department:</strong> " . ucfirst($department) . "</p>
-            <p><strong>Product Reference:</strong> $product_ref</p>
-            <p><strong>Message:</strong><br>" . nl2br($message) . "</p>
-            <hr>
-            <p>This email was sent from the Fintek website contact form.</p>
+        <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #f0f0f0; border-radius: 12px; overflow: hidden;'>
+            <div style='background-color: #ffffff; padding: 30px; text-align: center; border-bottom: 2px solid #f8f9fa;'>
+                <img src='cid:fintek_logo' alt='Fintek Logo' style='height: 50px; width: auto;'>
+            </div>
+            <div style='padding: 40px; background-color: #ffffff;'>
+                <h2 style='color: #0056b3; margin-top: 0; font-size: 24px;'>New Website Inquiry</h2>
+                <p style='color: #666; margin-bottom: 30px;'>A new message has been submitted from the contact form on your website.</p>
+                
+                <table style='width: 100%; border-collapse: collapse;'>
+                    <tr>
+                        <td style='padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-weight: bold; width: 150px;'>Sender Name:</td>
+                        <td style='padding: 12px 0; border-bottom: 1px solid #f0f0f0;'>$name</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-weight: bold;'>Email Address:</td>
+                        <td style='padding: 12px 0; border-bottom: 1px solid #f0f0f0;'><a href='mailto:$email' style='color: #0056b3; text-decoration: none;'>$email</a></td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-weight: bold;'>Department:</td>
+                        <td style='padding: 12px 0; border-bottom: 1px solid #f0f0f0;'>" . ucfirst($department) . "</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-weight: bold;'>Product Ref:</td>
+                        <td style='padding: 12px 0; border-bottom: 1px solid #f0f0f0;'>$product_ref</td>
+                    </tr>
+                </table>
+                
+                <div style='margin-top: 30px; padding: 25px; background-color: #f9f9f9; border-radius: 8px;'>
+                    <p style='font-weight: bold; margin-top: 0; color: #0056b3;'>Message Contents:</p>
+                    <p style='margin-bottom: 0; white-space: pre-wrap;'>$message</p>
+                </div>
+            </div>
+            <div style='background-color: #f8f9fa; padding: 20px; text-align: center; font-size: 12px; color: #999;'>
+                <p style='margin: 0;'>&copy; " . date('Y') . " Fintek Managed Solutions (Pvt) Ltd. All rights reserved.</p>
+                <p style='margin: 5px 0 0;'>This is an automated notification from your website's inquiry portal.</p>
+            </div>
+        </div>
         ";
 
         $mail->Body    = $emailContent;
