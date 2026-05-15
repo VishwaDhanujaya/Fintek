@@ -14,6 +14,8 @@ define('SMTP_ENCRYPTION', 'tls');
 define('RECIPIENT_EMAIL', 'fintek@finteksl.com');
 define('RECIPIENT_NAME', 'Fintek Inquiries');
 
-// Base URL for Pretty URLs
-define('BASE_URL', '/Fintek/');
+// Base URL for Pretty URLs (Dynamic Detection)
+$scriptPath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+$rootPath = ($scriptPath == '/' || $scriptPath == '\\' || $scriptPath == '.') ? '/' : rtrim($scriptPath, '/') . '/';
+define('BASE_URL', $rootPath);
 ?>

@@ -1,11 +1,14 @@
 # Enable Rewrite Engine
 RewriteEngine On
 
-# Ensure we are in the directory context
-RewriteBase /Fintek/
+# RewriteBase is removed to allow automatic detection by Apache.
+# If your server requires it, uncomment one of the following:
+# RewriteBase /Fintek/  (Local)
+# RewriteBase /        (Live)
+# RewriteBase /
 
 # 1. Redirect /index.php to /
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Fintek/index\.php\ HTTP/
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ .*/index\.php\ HTTP/
 RewriteRule ^index\.php$ ./ [R=301,L]
 
 # 2. Specific Aliases
