@@ -7,9 +7,7 @@ require_once 'header.php';
 
 <section class="relative bg-gray-900 py-24">
     <div class="absolute inset-0 overflow-hidden">
-        <img src="assets/images/about-hero.jpg" alt="Fintek Team"
-            class="w-full h-full object-cover opacity-30 blur-load" data-src="assets/images/about-hero.jpg"
-            onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80'">
+        <img src="assets/images/about-us.webp" alt="Fintek Team" class="w-full h-full object-cover opacity-30 blur-sm">
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
         <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">About Fintek</h1>

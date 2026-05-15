@@ -4,14 +4,14 @@ require_once 'includes/ProductCatalog.php';
 $catalog = new ProductCatalog();
 $allProducts = $catalog->getAllProducts();
 $searchData = [];
-foreach ($allProducts as $product) {
+foreach ($allProducts as $headerProduct) {
     $searchData[] = [
-        'id' => $product->getId(),
-        'name' => $product->getName(),
-        'tags' => $product->getTags(),
-        'desc' => $product->getShortDesc(),
-        'image' => $product->getImage(),
-        'url' => 'product-detail.php?id=' . $product->getId()
+        'id' => $headerProduct->getId(),
+        'name' => $headerProduct->getName(),
+        'tags' => $headerProduct->getTags(),
+        'desc' => $headerProduct->getShortDesc(),
+        'image' => $headerProduct->getImage(),
+        'url' => 'product-detail.php?id=' . $headerProduct->getId()
     ];
 }
 ?>
