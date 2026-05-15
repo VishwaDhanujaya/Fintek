@@ -1,0 +1,29 @@
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Ensure we are in the directory context
+RewriteBase /Fintek/
+
+# 1. Redirect /index.php to /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Fintek/index\.php\ HTTP/
+RewriteRule ^index\.php$ ./ [R=301,L]
+
+# 2. Specific Aliases
+# Map /about-us to about.php
+RewriteRule ^about-us/?$ about.php [L,NC]
+
+# Map /contact-us to contact.php
+RewriteRule ^contact-us/?$ contact.php [L,NC]
+
+# Map /products to products.php
+RewriteRule ^products/?$ products.php [L,NC]
+
+# 3. Dynamic Product URLs
+# Map /product/BP-30M28 to product-detail.php?id=BP-30M28
+RewriteRule ^product/([^/]+)/?$ product-detail.php?id=$1 [L,NC,QSA]
+
+# 4. General rule for extensionless PHP files
+# (Allows /about to load about.php if it exists)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

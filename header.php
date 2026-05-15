@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 $currentPage = basename($_SERVER['PHP_SELF']);
 require_once 'includes/ProductCatalog.php';
 $catalog = new ProductCatalog();
@@ -11,7 +12,7 @@ foreach ($allProducts as $headerProduct) {
         'tags' => $headerProduct->getTags(),
         'desc' => $headerProduct->getShortDesc(),
         'image' => $headerProduct->getImage(),
-        'url' => 'product-detail.php?id=' . $headerProduct->getId()
+        'url' => BASE_URL . 'product/' . $headerProduct->getId()
     ];
 }
 ?>
@@ -22,17 +23,17 @@ foreach ($allProducts as $headerProduct) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/fintek-logo.png">
+    <link rel="icon" type="image/png" href="<?= BASE_URL ?>assets/images/fintek-logo.png">
     <meta name="description" content="Fintek Managed Solutions - Authorized distributor for Sharp, NCR, Scancoin, and Vivitek in Sri Lanka. Providing world-class office and banking automation solutions.">
     <title>Fintek - <?= ucfirst(str_replace(['.php', '-'], ['', ' '], $currentPage === 'index.php' ? 'Office Automation' : $currentPage)) ?></title>
     <!-- Tailwind CSS (Production-ready) -->
-    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/main.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom Styles -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/style.css" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -45,21 +46,21 @@ foreach ($allProducts as $headerProduct) {
             <div class="flex justify-between items-center h-20">
 
                 <!-- Site Logo / Brand -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='index.php'">
-                    <img src="assets/images/fintek-logo.png" alt="Fintek Logo" class="h-12 w-auto object-contain">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='<?= BASE_URL ?>'">
+                    <img src="<?= BASE_URL ?>assets/images/fintek-logo.png" alt="Fintek Logo" class="h-12 w-auto object-contain">
                 </div>
 
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden md:flex space-x-8">
-                    <a href="index.php"
+                    <a href="<?= BASE_URL ?>"
                         class="nav-link font-medium <?= $currentPage == 'index.php' ? 'active text-fintek-blue' : 'text-gray-600 hover:text-fintek-blue' ?>">Home</a>
-                    <a href="about.php"
+                    <a href="<?= BASE_URL ?>about-us"
                         class="nav-link font-medium <?= $currentPage == 'about.php' ? 'active text-fintek-blue' : 'text-gray-600 hover:text-fintek-blue' ?>">About
                         Us</a>
-                    <a href="products.php"
+                    <a href="<?= BASE_URL ?>products"
                         class="nav-link font-medium <?= ($currentPage == 'products.php' || $currentPage == 'product-detail.php') ? 'active text-fintek-blue' : 'text-gray-600 hover:text-fintek-blue' ?>">Products</a>
-                    <a href="contact.php"
+                    <a href="<?= BASE_URL ?>contact-us"
                         class="nav-link font-medium <?= $currentPage == 'contact.php' ? 'active text-fintek-blue' : 'text-gray-600 hover:text-fintek-blue' ?>">Contact
                         Us</a>
                 </nav>
@@ -93,6 +94,7 @@ foreach ($allProducts as $headerProduct) {
         </div>
 
     <script>
+        const BASE_URL = '<?= BASE_URL ?>';
         const SEARCH_DATA = <?= json_encode($searchData) ?>;
     </script>
 
@@ -100,14 +102,14 @@ foreach ($allProducts as $headerProduct) {
         <!-- Mobile Navigation Menu (Toggled via JS) -->
         <div class="md:hidden bg-white border-t border-gray-100" id="mobileMenu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-inner">
-                <a href="index.php"
+                <a href="<?= BASE_URL ?>"
                     class="block px-3 py-2 text-base font-medium rounded-md <?= $currentPage == 'index.php' ? 'bg-blue-50 text-fintek-blue' : 'text-gray-700 hover:text-fintek-blue hover:bg-gray-50' ?>">Home</a>
-                <a href="about.php"
+                <a href="<?= BASE_URL ?>about-us"
                     class="block px-3 py-2 text-base font-medium rounded-md <?= $currentPage == 'about.php' ? 'bg-blue-50 text-fintek-blue' : 'text-gray-700 hover:text-fintek-blue hover:bg-gray-50' ?>">About
                     Us</a>
-                <a href="products.php"
+                <a href="<?= BASE_URL ?>products"
                     class="block px-3 py-2 text-base font-medium rounded-md <?= ($currentPage == 'products.php' || $currentPage == 'product-detail.php') ? 'bg-blue-50 text-fintek-blue' : 'text-gray-700 hover:text-fintek-blue hover:bg-gray-50' ?>">Products</a>
-                <a href="contact.php"
+                <a href="<?= BASE_URL ?>contact-us"
                     class="block px-3 py-2 text-base font-medium rounded-md <?= $currentPage == 'contact.php' ? 'bg-blue-50 text-fintek-blue' : 'text-gray-700 hover:text-fintek-blue hover:bg-gray-50' ?>">Contact
                     Us</a>
             </div>

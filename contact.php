@@ -99,7 +99,7 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                 <div class="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-100">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
 
-                    <form action="process-contact.php" method="POST" class="space-y-6">
+                    <form action="<?= BASE_URL ?>process-contact.php" method="POST" class="space-y-6">
 
                         <div class="relative">
                             <input type="text" id="name" name="name"
@@ -186,12 +186,12 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
             <?php
             $brands = [
-                ['name' => 'Sharp', 'logo' => 'assets/images/brand-sharp.jpg', 'link' => 'https://global.sharp/'],
-                ['name' => 'Vivitek', 'logo' => 'assets/images/brand-vivitec.jpg', 'link' => 'https://vivitek.eu/'],
-                ['name' => 'Scan Coin', 'logo' => 'assets/images/brand-scancoin.jpg', 'link' => 'https://paycomplete.com/scancoin/'],
-                ['name' => 'MIB', 'logo' => 'assets/images/brand-mib.jpg', 'link' => 'https://hyundaimib.com/'],
-                ['name' => 'Doculine', 'logo' => 'assets/images/brand-doculine.jpg', 'link' => 'https://doculine.eu/'],
-                ['name' => 'Posmart', 'logo' => 'assets/images/brand-posmart.jpg', 'link' => 'https://posmart.lk/'],
+                ['name' => 'Sharp', 'logo' => BASE_URL . 'assets/images/brand-sharp.jpg', 'link' => 'https://global.sharp/'],
+                ['name' => 'Vivitek', 'logo' => BASE_URL . 'assets/images/brand-vivitec.jpg', 'link' => 'https://vivitek.eu/'],
+                ['name' => 'Scan Coin', 'logo' => BASE_URL . 'assets/images/brand-scancoin.jpg', 'link' => 'https://paycomplete.com/scancoin/'],
+                ['name' => 'MIB', 'logo' => BASE_URL . 'assets/images/brand-mib.jpg', 'link' => 'https://hyundaimib.com/'],
+                ['name' => 'Doculine', 'logo' => BASE_URL . 'assets/images/brand-doculine.jpg', 'link' => 'https://doculine.eu/'],
+                ['name' => 'Posmart', 'logo' => BASE_URL . 'assets/images/brand-posmart.jpg', 'link' => 'https://posmart.lk/'],
             ];
             foreach ($brands as $brand): ?>
                 <a href="<?= $brand['link'] ?>" target="_blank" rel="noopener noreferrer"

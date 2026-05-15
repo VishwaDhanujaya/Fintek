@@ -51,14 +51,14 @@ require_once 'header.php';
                         // Retrieve the category to display its name inside the product card
                         $cat = $catalog->getCategoryById($product->getCategoryId());
                         ?>
-                        <div onclick="window.location.href='product-detail.php?id=<?= urlencode($product->getId()) ?>'"
+                        <div onclick="window.location.href='<?= BASE_URL ?>product/<?= urlencode($product->getId()) ?>'"
                             class="product-item project-card !p-0 overflow-hidden flex flex-col group border border-gray-100 hover:border-fintek-blue/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
                             data-category="<?= htmlspecialchars($product->getCategoryId()) ?>">
                             <div class="relative h-48 bg-gray-50 p-6 flex items-center justify-center overflow-hidden">
-                                <img src="<?= htmlspecialchars($product->getImage()) ?>"
+                                <img src="<?= BASE_URL . htmlspecialchars($product->getImage()) ?>"
                                     alt="<?= htmlspecialchars($product->getName()) ?>"
                                     class="max-h-full object-contain blur-load group-hover:scale-105 transition-transform duration-500"
-                                    data-src="<?= htmlspecialchars($product->getImage()) ?>"
+                                    data-src="<?= BASE_URL . htmlspecialchars($product->getImage()) ?>"
                                     onerror="this.src='https://placehold.co/400x300/f8fafc/94a3b8?text=Image'">
                             </div>
                             <div class="p-6 flex-grow flex flex-col">
@@ -72,7 +72,7 @@ require_once 'header.php';
                                     <?= htmlspecialchars($product->getShortDesc()) ?>
                                 </p>
 
-                                <a href="contact.php?product=<?= urlencode($product->getName()) ?>"
+                                <a href="<?= BASE_URL ?>contact-us?product=<?= urlencode($product->getName()) ?>"
                                     onclick="event.stopPropagation();"
                                     class="mt-auto w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-fintek-blue hover:bg-fintek-blue-light transition-all duration-300 shadow-sm">
                                     Get Quote

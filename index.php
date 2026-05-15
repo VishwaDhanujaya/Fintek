@@ -17,23 +17,23 @@ require_once 'header.php';
         <!-- Slide 1 -->
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out z-0">
             <picture>
-                <source srcset="assets/images/m-web-slide-01.jpg" media="(max-width: 639px)">
-                <img src="assets/images/web-slide-01.jpg" alt="Fintek Solutions 1" class="w-full h-full object-cover">
+                <source srcset="<?= BASE_URL ?>assets/images/m-web-slide-01.jpg" media="(max-width: 639px)">
+                <img src="<?= BASE_URL ?>assets/images/web-slide-01.jpg" alt="Fintek Solutions 1" class="w-full h-full object-cover">
             </picture>
         </div>
         <!-- Slide 2 -->
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out z-0">
             <picture>
-                <source srcset="assets/images/m-web-slide-02.jpg" media="(max-width: 639px)">
-                <img src="assets/images/web-slide-02.jpg" alt="Fintek Solutions 2" class="w-full h-full object-cover">
+                <source srcset="<?= BASE_URL ?>assets/images/m-web-slide-02.jpg" media="(max-width: 639px)">
+                <img src="<?= BASE_URL ?>assets/images/web-slide-02.jpg" alt="Fintek Solutions 2" class="w-full h-full object-cover">
             </picture>
             <div class="absolute inset-0 bg-black/5"></div>
         </div>
         <!-- Slide 3 -->
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out z-0">
             <picture>
-                <source srcset="assets/images/m-web-slide-03.jpg" media="(max-width: 639px)">
-                <img src="assets/images/web-slide-03.jpg" alt="Fintek Solutions 3" class="w-full h-full object-cover">
+                <source srcset="<?= BASE_URL ?>assets/images/m-web-slide-03.jpg" media="(max-width: 639px)">
+                <img src="<?= BASE_URL ?>assets/images/web-slide-03.jpg" alt="Fintek Solutions 3" class="w-full h-full object-cover">
             </picture>
             <div class="absolute inset-0 bg-black/5"></div>
         </div>
@@ -81,11 +81,11 @@ require_once 'header.php';
             space, and will introduce other business lines in the near future.
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="products.php"
+            <a href="<?= BASE_URL ?>products"
                 class="inline-flex justify-center items-center px-8 py-3.5 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-fintek-blue hover:bg-fintek-blue-light transition-all duration-300 transform hover:-translate-y-1">
                 Explore Catalog
             </a>
-            <a href="contact.php"
+            <a href="<?= BASE_URL ?>contact-us"
                 class="inline-flex justify-center items-center px-8 py-3.5 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-all duration-300">
                 Request a Consultation
             </a>
@@ -108,7 +108,7 @@ require_once 'header.php';
             $delay = 0;
             foreach ($categories as $category): ?>
                 <div class="project-card flex flex-col items-center text-center cursor-pointer group"
-                    onclick="window.location.href='products.php?category=<?= $category->getId() ?>'" data-aos="fade-up"
+                    onclick="window.location.href='<?= BASE_URL ?>products?category=<?= $category->getId() ?>'" data-aos="fade-up"
                     data-aos-delay="<?= $delay ?>">
                     <div
                         class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-6 group-hover:bg-fintek-blue transition-colors duration-300">
@@ -134,7 +134,7 @@ require_once 'header.php';
                 <h2 class="text-3xl font-bold text-gray-900 mb-2">Featured Products</h2>
                 <p class="text-gray-600">The latest additions to our premium collection.</p>
             </div>
-            <a href="products.php"
+            <a href="<?= BASE_URL ?>products"
                 class="hidden sm:inline-flex text-fintek-blue font-medium hover:text-fintek-blue-light transition-colors items-center">
                 View All <svg class="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -150,7 +150,7 @@ require_once 'header.php';
                 // Retrieve the category to display its name on the card
                 $cat = $catalog->getCategoryById($product->getCategoryId());
                 ?>
-                <div onclick="window.location.href='product-detail.php?id=<?= urlencode($product->getId()) ?>'"
+                <div onclick="window.location.href='<?= BASE_URL ?>product/<?= urlencode($product->getId()) ?>'"
                     class="project-card !p-0 overflow-hidden transform hover:-translate-y-2 flex flex-col group border border-gray-100 hover:border-fintek-blue/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
                     data-aos="fade-up" data-aos-delay="<?= $delay ?>">
                     <div class="relative h-48 bg-gray-50 p-6 flex items-center justify-center overflow-hidden">
@@ -158,10 +158,10 @@ require_once 'header.php';
                             <span
                                 class="absolute top-4 left-4 bg-fintek-blue text-white text-xs font-bold px-3 py-1 rounded-full z-10">NEW</span>
                         <?php endif; ?>
-                        <img src="<?= htmlspecialchars($product->getImage()) ?>"
+                        <img src="<?= BASE_URL . htmlspecialchars($product->getImage()) ?>"
                             alt="<?= htmlspecialchars($product->getName()) ?>"
                             class="max-h-full object-contain blur-load group-hover:scale-110 transition-transform duration-500"
-                            data-src="<?= htmlspecialchars($product->getImage()) ?>"
+                            data-src="<?= BASE_URL . htmlspecialchars($product->getImage()) ?>"
                             onerror="this.src='https://placehold.co/400x300/f8fafc/94a3b8?text=Product+Image'">
                     </div>
                     <div class="p-6 flex-grow flex flex-col">
@@ -174,7 +174,7 @@ require_once 'header.php';
                             <?= htmlspecialchars($product->getShortDesc()) ?>
                         </p>
 
-                        <a href="contact.php?product=<?= urlencode($product->getName()) ?>"
+                        <a href="<?= BASE_URL ?>contact-us?product=<?= urlencode($product->getName()) ?>"
                             onclick="event.stopPropagation();"
                             class="mt-auto w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-fintek-blue hover:bg-fintek-blue-light transition-all duration-300 shadow-sm">
                             Get Quote
@@ -187,7 +187,7 @@ require_once 'header.php';
         </div>
 
         <div class="mt-8 text-center sm:hidden">
-            <a href="products.php"
+            <a href="<?= BASE_URL ?>products"
                 class="inline-flex text-fintek-blue font-medium hover:text-fintek-blue-light transition-colors items-center">
                 View All Products <svg class="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -208,12 +208,12 @@ require_once 'header.php';
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
             <?php
             $brands = [
-                ['name' => 'Sharp', 'logo' => 'assets/images/brand-sharp.jpg', 'link' => 'https://global.sharp/'],
-                ['name' => 'Vivitek', 'logo' => 'assets/images/brand-vivitec.jpg', 'link' => 'https://vivitek.eu/'],
-                ['name' => 'Scan Coin', 'logo' => 'assets/images/brand-scancoin.jpg', 'link' => 'https://paycomplete.com/scancoin/'],
-                ['name' => 'MIB', 'logo' => 'assets/images/brand-mib.jpg', 'link' => 'https://hyundaimib.com/'],
-                ['name' => 'Doculine', 'logo' => 'assets/images/brand-doculine.jpg', 'link' => 'https://doculine.eu/'],
-                ['name' => 'Posmart', 'logo' => 'assets/images/brand-posmart.jpg', 'link' => 'https://posmart.lk/'],
+                ['name' => 'Sharp', 'logo' => BASE_URL . 'assets/images/brand-sharp.jpg', 'link' => 'https://global.sharp/'],
+                ['name' => 'Vivitek', 'logo' => BASE_URL . 'assets/images/brand-vivitec.jpg', 'link' => 'https://vivitek.eu/'],
+                ['name' => 'Scan Coin', 'logo' => BASE_URL . 'assets/images/brand-scancoin.jpg', 'link' => 'https://paycomplete.com/scancoin/'],
+                ['name' => 'MIB', 'logo' => BASE_URL . 'assets/images/brand-mib.jpg', 'link' => 'https://hyundaimib.com/'],
+                ['name' => 'Doculine', 'logo' => BASE_URL . 'assets/images/brand-doculine.jpg', 'link' => 'https://doculine.eu/'],
+                ['name' => 'Posmart', 'logo' => BASE_URL . 'assets/images/brand-posmart.jpg', 'link' => 'https://posmart.lk/'],
             ];
             foreach ($brands as $brand): ?>
                 <a href="<?= $brand['link'] ?>" target="_blank" rel="noopener noreferrer"

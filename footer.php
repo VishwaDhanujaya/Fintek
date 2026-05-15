@@ -8,7 +8,7 @@
 
             <!-- Company Description and Branding -->
             <div data-aos="fade-up">
-                <img src="assets/images/fintek-logo.png" alt="Fintek Logo" class="h-14 w-auto mb-6 object-contain">
+                <img src="<?= BASE_URL ?>assets/images/fintek-logo.png" alt="Fintek Logo" class="h-14 w-auto mb-6 object-contain">
                 <p class="text-sm text-gray-400 mb-4 pr-4">Leading provider of modern office automation solutions. We
                     bring efficiency and innovation to your workplace.</p>
             </div>
@@ -18,10 +18,10 @@
             <div data-aos="fade-up" data-aos-delay="100">
                 <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <ul class="space-y-2">
-                    <li><a href="index.php" class="text-sm hover:text-white transition-colors">Home</a></li>
-                    <li><a href="about.php" class="text-sm hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="products.php" class="text-sm hover:text-white transition-colors">Products</a></li>
-                    <li><a href="contact.php" class="text-sm hover:text-white transition-colors">Contact Us</a></li>
+                    <li><a href="<?= BASE_URL ?>" class="text-sm hover:text-white transition-colors">Home</a></li>
+                    <li><a href="<?= BASE_URL ?>about-us" class="text-sm hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="<?= BASE_URL ?>products" class="text-sm hover:text-white transition-colors">Products</a></li>
+                    <li><a href="<?= BASE_URL ?>contact-us" class="text-sm hover:text-white transition-colors">Contact Us</a></li>
                 </ul>
             </div>
 
@@ -90,7 +90,7 @@
 <!-- AOS Animation Script -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <!-- Custom Vanilla JS -->
-<script src="assets/js/main.js"></script>
+<script src="<?= BASE_URL ?>assets/js/main.js"></script>
 </body>
 
 </html>

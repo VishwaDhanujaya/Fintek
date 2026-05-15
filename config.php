@@ -13,4 +13,7 @@ define('SMTP_ENCRYPTION', 'tls');
 // Recipient Settings
 define('RECIPIENT_EMAIL', 'fintek@finteksl.com');
 define('RECIPIENT_NAME', 'Fintek Inquiries');
+
+// Base URL for Pretty URLs
+define('BASE_URL', '/Fintek/');
 ?>

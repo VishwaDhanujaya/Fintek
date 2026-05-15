@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="${item.url}" class="search-result-item block p-4 border-b border-gray-50 last:border-0 hover:bg-gray-50">
                     <div class="flex items-center space-x-4">
                         <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden border border-gray-100">
-                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain">
+                            <img src="${BASE_URL}${item.image}" alt="${item.name}" class="w-full h-full object-contain">
                         </div>
                         <div class="flex-grow min-w-0">
                             <div class="text-sm font-semibold text-gray-900 truncate">${item.name}</div>

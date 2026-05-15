@@ -8,7 +8,7 @@ $product = $productId ? $catalog->getProductById($productId) : null; // Fetch th
 
 // Redirect to catalog if product not found
 if (!$product) {
-    header('Location: products.php');
+    header('Location: ' . BASE_URL . 'products');
     exit;
 }
 
@@ -20,9 +20,9 @@ require_once 'header.php';
 <div class="bg-white border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <nav class="flex text-sm text-gray-500 font-medium">
-            <a href="index.php" class="hover:text-fintek-blue transition-colors">Home</a>
+            <a href="<?= BASE_URL ?>" class="hover:text-fintek-blue transition-colors">Home</a>
             <span class="mx-2">/</span>
-            <a href="products.php?category=<?= urlencode($product->getCategoryId()) ?>"
+            <a href="<?= BASE_URL ?>products?category=<?= urlencode($product->getCategoryId()) ?>"
                 class="hover:text-fintek-blue transition-colors uppercase">
                 <?= htmlspecialchars($category ? $category->getName() : 'Products') ?>
             </a>
@@ -47,10 +47,10 @@ require_once 'header.php';
                         <?php endif; ?>
 
                         <div class="bg-gray-50 rounded-xl p-8 mb-8 flex justify-center items-center">
-                            <img src="<?= htmlspecialchars($product->getImage()) ?>"
+                            <img src="<?= BASE_URL . htmlspecialchars($product->getImage()) ?>"
                                 alt="<?= htmlspecialchars($product->getName()) ?>"
                                 class="w-full max-w-sm object-contain blur-load"
-                                data-src="<?= htmlspecialchars($product->getImage()) ?>"
+                                data-src="<?= BASE_URL . htmlspecialchars($product->getImage()) ?>"
                                 onerror="this.src='https://placehold.co/600x600/f8fafc/94a3b8?text=Product'">
                         </div>
 
@@ -60,12 +60,12 @@ require_once 'header.php';
                         </p>
 
                         <div class="flex flex-col space-y-4">
-                            <a href="contact.php?product=<?= urlencode($product->getName()) ?>"
+                            <a href="<?= BASE_URL ?>contact-us?product=<?= urlencode($product->getName()) ?>"
                                 class="w-full flex justify-center items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-white bg-fintek-blue hover:bg-fintek-blue-light transition-colors shadow-sm">
                                 Get a Quote
                             </a>
                             <?php if ($product->getBrochure()): ?>
-                                <a href="<?= htmlspecialchars($product->getBrochure()) ?>" target="_blank"
+                                <a href="<?= BASE_URL . htmlspecialchars($product->getBrochure()) ?>" target="_blank"
                                     class="w-full flex justify-center items-center px-8 py-4 border border-gray-300 text-lg font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors">
                                     Download Brochure
                                 </a>
