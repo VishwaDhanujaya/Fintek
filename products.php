@@ -65,7 +65,8 @@ require_once 'header.php';
                                 <div class="text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">
                                     <?= htmlspecialchars($cat ? $cat->getName() : 'General') ?>
                                 </div>
-                                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-fintek-blue transition-colors">
+                                <h3
+                                    class="text-lg font-bold text-gray-900 mb-2 group-hover:text-fintek-blue transition-colors">
                                     <?= htmlspecialchars($product->getName()) ?>
                                 </h3>
                                 <p class="text-sm text-gray-500 mb-4 flex-grow line-clamp-2">
