@@ -76,53 +76,23 @@ require_once 'header.php';
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
-            <!-- Mr. S.J.M. Anzsar -->
-            <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="<?= BASE_URL ?>assets/images/dir-anzsar.webp" alt="Mr. S.J.M. Anzsar" class="w-full h-full object-cover">
-                </div>
-                <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Mr. S.J.M. Anzsar</h4>
-                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>
-            </div>
-
-            <!-- Mr. A.R. Rasiah -->
-            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="<?= BASE_URL ?>assets/images/dir-rasiah.webp" alt="Mr. A.R. Rasiah" class="w-full h-full object-cover">
-                </div>
-                <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Mr. A.R. Rasiah</h4>
-                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>
-            </div>
-
-            <!-- Ms. A. Geethanjalee -->
-            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="<?= BASE_URL ?>assets/images/dir-geethanjalee.webp" alt="Ms. A. Geethanjalee"
-                        class="w-full h-full object-cover">
-                </div>
-                <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Ms. A. Geethanjalee</h4>
-                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>
-            </div>
-
-            <!-- Mr. L. Susiri Perera -->
-            <div class="text-center" data-aos="fade-up" data-aos-delay="400">
-                <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="<?= BASE_URL ?>assets/images/dir-perera.webp" alt="Mr. L. Susiri Perera"
-                        class="w-full h-full object-cover">
-                </div>
-                <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Mr. L. Susiri Perera</h4>
-                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>
-            </div>
-
-            <!-- Mr. A. Michael G. Gomez -->
-            <div class="text-center" data-aos="fade-up" data-aos-delay="500">
-                <div class="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-                    <img src="<?= BASE_URL ?>assets/images/dir-gomez.webp" alt="Mr. A. Michael G. Gomez"
-                        class="w-full h-full object-cover">
-                </div>
-                <h4 class="text-sm font-semibold text-gray-900 tracking-tight">Mr. A. Michael G. Gomez</h4>
-                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Board Director</p>
-            </div>
+            <?php
+            $directors = [
+                ['name' => 'Mr. S.J.M. Anzsar', 'image' => 'dir-anzsar.webp', 'role' => 'Board Director'],
+                ['name' => 'Mr. A.R. Rasiah', 'image' => 'dir-rasiah.webp', 'role' => 'Board Director'],
+                ['name' => 'Ms. A. Geethanjalee', 'image' => 'dir-geethanjalee.webp', 'role' => 'Board Director'],
+                ['name' => 'Mr. L. Susiri Perera', 'image' => 'dir-perera.webp', 'role' => 'Board Director'],
+                ['name' => 'Mr. A. Michael G. Gomez', 'image' => 'dir-gomez.webp', 'role' => 'Board Director'],
+            ];
+            $delay = 100;
+            foreach ($directors as $director) {
+                $name = $director['name'];
+                $image = $director['image'];
+                $role = $director['role'];
+                require 'includes/director-card.php';
+                $delay += 100;
+            }
+            ?>
         </div>
     </div>
 </section>

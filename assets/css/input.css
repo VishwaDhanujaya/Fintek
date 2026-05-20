@@ -3,7 +3,51 @@
 @tailwind utilities;
 
 @layer components {
+  /* 1. Base Project / Product Card Utility */
   .project-card {
     @apply border rounded-2xl p-6 bg-white shadow-sm hover:shadow-xl transition-all;
   }
+
+  /* 2. Premium Buttons */
+  .btn-primary {
+    @apply bg-fintek-blue hover:bg-fintek-blue-light text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 active:scale-[0.98] shadow-md hover:shadow-lg inline-flex items-center justify-center;
+  }
+
+  .btn-secondary {
+    @apply border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 active:scale-[0.98] shadow-sm inline-flex items-center justify-center;
+  }
+
+  /* 3. High-Fidelity Product Cards */
+  .card-product {
+    @apply border border-gray-100 hover:border-fintek-blue/30 rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col cursor-pointer;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card-product:hover {
+    transform: translateY(-6px);
+  }
+
+  /* 4. Trusted Brand Cards */
+  .card-brand {
+    @apply flex items-center justify-center p-8 bg-gray-50 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-fintek-blue/10 transition-all duration-300;
+  }
+
+  /* 5. Director Profile Cards */
+  .card-director {
+    @apply text-center transition-all duration-300;
+  }
+
+  .card-director-image {
+    @apply w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden shadow-md border-2 border-transparent group-hover:border-fintek-blue/20 transition-all duration-500 object-cover group-hover:scale-105;
+  }
+
+  /* 6. Form Inputs & Floating Labels */
+  .form-input-floating {
+    @apply block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-fintek-blue;
+  }
+
+  .form-label-floating {
+    @apply absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-fintek-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4;
+  }
 }
+

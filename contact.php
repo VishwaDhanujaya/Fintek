@@ -103,25 +103,23 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
 
                         <div class="relative">
                             <input type="text" id="name" name="name"
-                                class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-fintek-blue peer"
+                                class="form-input-floating peer"
                                 placeholder=" " required />
                             <label for="name"
-                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-fintek-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Full
-                                Name</label>
+                                class="form-label-floating">Full Name</label>
                         </div>
 
                         <div class="relative">
                             <input type="email" id="email" name="email"
-                                class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-fintek-blue peer"
+                                class="form-input-floating peer"
                                 placeholder=" " required />
                             <label for="email"
-                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-fintek-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Email
-                                Address</label>
+                                class="form-label-floating">Email Address</label>
                         </div>
 
                         <div class="relative">
                             <select id="department" name="department"
-                                class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-fintek-blue peer">
+                                class="form-input-floating peer">
                                 <!-- Pre-select the 'Sales Inquiry' department if a specific product was requested -->
                                 <option value="sales" <?= $productName ? 'selected' : '' ?>>Sales Inquiry</option>
                                 <option value="support">Technical Support</option>
@@ -129,7 +127,7 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                                 <option value="general">General Information</option>
                             </select>
                             <label for="department"
-                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-fintek-blue">Department</label>
+                                class="form-label-floating !scale-75 !-translate-y-4">Department</label>
                             <div
                                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -144,21 +142,19 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
                         <?php if ($productName): ?>
                             <div class="relative">
                                 <input type="text" id="product_ref" name="product_ref" value="<?= $productName ?>"
-                                    class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-fintek-blue peer"
+                                    class="form-input-floating peer"
                                     placeholder=" " readonly />
                                 <label for="product_ref"
-                                    class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-fintek-blue">Product
-                                    Reference</label>
+                                    class="form-label-floating !scale-75 !-translate-y-4">Product Reference</label>
                             </div>
                         <?php endif; ?>
 
                         <div class="relative">
                             <textarea id="message" name="message" rows="4"
-                                class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-fintek-blue peer"
+                                class="form-input-floating peer"
                                 placeholder=" " required></textarea>
                             <label for="message"
-                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-fintek-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Your
-                                Message</label>
+                                class="form-label-floating">Your Message</label>
                         </div>
 
                         <?php
@@ -183,24 +179,7 @@ $productName = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : ''
             <div class="h-1 w-20 bg-fintek-blue mx-auto rounded-full opacity-20"></div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-            <?php
-            $brands = [
-                ['name' => 'Sharp', 'logo' => BASE_URL . 'assets/images/brand-sharp.jpg', 'link' => 'https://global.sharp/'],
-                ['name' => 'Vivitek', 'logo' => BASE_URL . 'assets/images/brand-vivitec.jpg', 'link' => 'https://vivitek.eu/'],
-                ['name' => 'Scan Coin', 'logo' => BASE_URL . 'assets/images/brand-scancoin.jpg', 'link' => 'https://paycomplete.com/scancoin/'],
-                ['name' => 'MIB', 'logo' => BASE_URL . 'assets/images/brand-mib.jpg', 'link' => 'https://hyundaimib.com/'],
-                ['name' => 'Doculine', 'logo' => BASE_URL . 'assets/images/brand-doculine.jpg', 'link' => 'https://doculine.eu/'],
-                ['name' => 'Posmart', 'logo' => BASE_URL . 'assets/images/brand-posmart.jpg', 'link' => 'https://posmart.lk/'],
-            ];
-            foreach ($brands as $brand): ?>
-                <a href="<?= $brand['link'] ?>" target="_blank" rel="noopener noreferrer"
-                    class="flex items-center justify-center p-8 bg-gray-50 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
-                    <img src="<?= $brand['logo'] ?>" alt="<?= $brand['name'] ?>"
-                        class="max-h-12 w-auto object-contain">
-                </a>
-            <?php endforeach; ?>
-        </div>
+        <?php require 'includes/brands.php'; ?>
     </div>
 </section>
 

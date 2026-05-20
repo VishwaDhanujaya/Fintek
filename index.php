@@ -82,11 +82,11 @@ require_once 'header.php';
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
             <a href="<?= BASE_URL ?>products"
-                class="inline-flex justify-center items-center px-8 py-3.5 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-fintek-blue hover:bg-fintek-blue-light transition-all duration-300 transform hover:-translate-y-1">
+                class="btn-primary px-8 !py-3.5 shadow-md transform hover:-translate-y-1 text-base">
                 Explore Catalog
             </a>
             <a href="<?= BASE_URL ?>contact-us"
-                class="inline-flex justify-center items-center px-8 py-3.5 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-all duration-300">
+                class="btn-secondary px-8 !py-3.5 text-base">
                 Request a Consultation
             </a>
         </div>
@@ -147,41 +147,7 @@ require_once 'header.php';
             // Stagger animation delays for featured product cards
             $delay = 0;
             foreach ($featured as $product):
-                // Retrieve the category to display its name on the card
-                $cat = $catalog->getCategoryById($product->getCategoryId());
-                ?>
-                <div onclick="window.location.href='<?= BASE_URL ?>product/<?= urlencode($product->getId()) ?>'"
-                    class="project-card !p-0 overflow-hidden transform hover:-translate-y-2 flex flex-col group border border-gray-100 hover:border-fintek-blue/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
-                    data-aos="fade-up" data-aos-delay="<?= $delay ?>">
-                    <div class="relative h-48 bg-gray-50 p-6 flex items-center justify-center overflow-hidden">
-                        <?php if ($product->isNew()): ?>
-                            <span
-                                class="absolute top-4 left-4 bg-fintek-blue text-white text-xs font-bold px-3 py-1 rounded-full z-10">NEW</span>
-                        <?php endif; ?>
-                        <img src="<?= BASE_URL . htmlspecialchars($product->getImage()) ?>"
-                            alt="<?= htmlspecialchars($product->getName()) ?>"
-                            class="max-h-full object-contain blur-load group-hover:scale-110 transition-transform duration-500"
-                            data-src="<?= BASE_URL . htmlspecialchars($product->getImage()) ?>"
-                            onerror="this.src='https://placehold.co/400x300/f8fafc/94a3b8?text=Product+Image'">
-                    </div>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider font-semibold">
-                            <?= htmlspecialchars($cat ? $cat->getName() : 'General') ?>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-fintek-blue transition-colors">
-                            <?= htmlspecialchars($product->getName()) ?></h3>
-                        <p class="text-sm text-gray-600 mb-6 flex-grow line-clamp-2">
-                            <?= htmlspecialchars($product->getShortDesc()) ?>
-                        </p>
-
-                        <a href="<?= BASE_URL ?>contact-us?product=<?= urlencode($product->getName()) ?>"
-                            onclick="event.stopPropagation();"
-                            class="mt-auto w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-fintek-blue hover:bg-fintek-blue-light transition-all duration-300 shadow-sm">
-                            Get Quote
-                        </a>
-                    </div>
-                </div>
-                <?php
+                require 'includes/product-card.php';
                 $delay += 100;
             endforeach; ?>
         </div>
@@ -205,24 +171,7 @@ require_once 'header.php';
             <div class="h-1 w-20 bg-fintek-blue mx-auto rounded-full opacity-20"></div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-            <?php
-            $brands = [
-                ['name' => 'Sharp', 'logo' => BASE_URL . 'assets/images/brand-sharp.jpg', 'link' => 'https://global.sharp/'],
-                ['name' => 'Vivitek', 'logo' => BASE_URL . 'assets/images/brand-vivitec.jpg', 'link' => 'https://vivitek.eu/'],
-                ['name' => 'Scan Coin', 'logo' => BASE_URL . 'assets/images/brand-scancoin.jpg', 'link' => 'https://paycomplete.com/scancoin/'],
-                ['name' => 'MIB', 'logo' => BASE_URL . 'assets/images/brand-mib.jpg', 'link' => 'https://hyundaimib.com/'],
-                ['name' => 'Doculine', 'logo' => BASE_URL . 'assets/images/brand-doculine.jpg', 'link' => 'https://doculine.eu/'],
-                ['name' => 'Posmart', 'logo' => BASE_URL . 'assets/images/brand-posmart.jpg', 'link' => 'https://posmart.lk/'],
-            ];
-            foreach ($brands as $brand): ?>
-                <a href="<?= $brand['link'] ?>" target="_blank" rel="noopener noreferrer"
-                    class="flex items-center justify-center p-8 bg-gray-50 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
-                    <img src="<?= $brand['logo'] ?>" alt="<?= $brand['name'] ?>"
-                        class="max-h-12 w-auto object-contain">
-                </a>
-            <?php endforeach; ?>
-        </div>
+        <?php require 'includes/brands.php'; ?>
     </div>
 </section>
 
